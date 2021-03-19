@@ -1,3 +1,7 @@
+// Auto-increment
+
+let autoIncrement = window.setInterval(countUp, 1000);
+
 // Functions
 
 function countUp() {
@@ -12,7 +16,7 @@ function countDown() {
     document.getElementById("counter").innerHTML = currentNumber;
 }
 
-function like() {
+function likeValue() {
     const likeList = document.querySelector(".likes");
     const newLike = document.createElement("li");
     let likedValue = document.getElementById("counter").innerHTML;
@@ -22,14 +26,22 @@ function like() {
 }
 
 function pause() {
-    if (this.id = "pause") {
+    if (document.getElementById("pause")) {
         clearInterval(autoIncrement);
-        this.id = "resume";
+        document.getElementById("pause").innerHTML = " resume ";
+        document.getElementById("pause").id = "resume";
+        document.getElementById("minus").disabled = true;
+        document.getElementById("plus").disabled = true;
+        document.getElementById("heart").disabled = true;
     }
-    else if (this.id = "resume") {
-        this.id = "pause";
+    else if (document.getElementById("resume")) {
+        autoIncrement = window.setInterval(countUp, 1000)
+        document.getElementById("resume").innerHTML = " pause ";
+        document.getElementById("resume").id = "pause";
+        document.getElementById("minus").disabled = false;
+        document.getElementById("plus").disabled = false;
+        document.getElementById("heart").disabled = false;
     }
-    else this.id = "boo";
 }
 
 function addComment() {
@@ -42,14 +54,10 @@ function addComment() {
     commentList.appendChild(comment);
 }
 
-// Auto-increment
-
-let autoIncrement = window.setInterval(countUp, 1000);
-
 // Event listeners
 
 document.getElementById("comment-form").addEventListener("submit", addComment);
 document.getElementById("minus").addEventListener("click", countDown);
 document.getElementById("plus").addEventListener("click", countUp);
-document.getElementById("heart").addEventListener("click", like);
+document.getElementById("heart").addEventListener("click", likeValue);
 document.getElementById("pause").addEventListener("click", pause);
