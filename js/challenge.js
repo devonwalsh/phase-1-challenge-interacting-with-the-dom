@@ -12,10 +12,6 @@ function countDown() {
     document.getElementById("counter").innerHTML = currentNumber;
 }
 
-function autoIncrement() {
-    setInterval(countUp, 1000);
-}
-
 function like() {
     const likeList = document.querySelector(".likes");
     const newLike = document.createElement("li");
@@ -23,6 +19,17 @@ function like() {
 
     newLike.appendChild(document.createTextNode(`${likedValue} has been liked`))
     likeList.appendChild(newLike);
+}
+
+function pause() {
+    if (this.id = "pause") {
+        clearInterval(autoIncrement);
+        this.id = "resume";
+    }
+    else if (this.id = "resume") {
+        this.id = "pause";
+    }
+    else this.id = "boo";
 }
 
 function addComment() {
@@ -35,10 +42,14 @@ function addComment() {
     commentList.appendChild(comment);
 }
 
+// Auto-increment
+
+let autoIncrement = window.setInterval(countUp, 1000);
+
 // Event listeners
 
-document.addEventListener("DOMContentLoaded", autoIncrement);
 document.getElementById("comment-form").addEventListener("submit", addComment);
 document.getElementById("minus").addEventListener("click", countDown);
 document.getElementById("plus").addEventListener("click", countUp);
 document.getElementById("heart").addEventListener("click", like);
+document.getElementById("pause").addEventListener("click", pause);
