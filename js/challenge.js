@@ -18,11 +18,20 @@ function countDown() {
 
 function likeValue() {
     const likeList = document.querySelector(".likes");
-    const newLike = document.createElement("li");
+    const likeItem = document.createElement("li");
     let likedValue = document.getElementById("counter").innerHTML;
+    uniqueId = "num-" + likedValue;
+    likeItem.id = uniqueId;
 
-    newLike.appendChild(document.createTextNode(`${likedValue} has been liked`))
-    likeList.appendChild(newLike);
+    if (document.getElementById(uniqueId)) {
+        let likeCount = document.querySelector("#" + uniqueId + " > span").innerHTML;
+        likeCount++;
+        document.querySelector("#" + uniqueId + " > span").innerHTML = likeCount;
+    }
+    else {
+    likeItem.innerHTML = `${likedValue} has been liked <span>1</span> times.`;
+    likeList.appendChild(likeItem);
+    }
 }
 
 function pause() {
@@ -56,8 +65,8 @@ function addComment() {
 
 // Event listeners
 
-document.getElementById("comment-form").addEventListener("submit", addComment);
 document.getElementById("minus").addEventListener("click", countDown);
 document.getElementById("plus").addEventListener("click", countUp);
 document.getElementById("heart").addEventListener("click", likeValue);
 document.getElementById("pause").addEventListener("click", pause);
+document.getElementById("comment-form").addEventListener("submit", addComment);
