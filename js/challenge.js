@@ -26,10 +26,10 @@ function likeValue() {
     if (document.getElementById(uniqueId)) {
         let likeCount = document.querySelector("#" + uniqueId + " > span").innerHTML;
         likeCount++;
-        document.querySelector("#" + uniqueId + " > span").innerHTML = likeCount;
+        document.querySelector("#" + uniqueId).innerHTML = `${likedValue} has been liked <span>${likeCount}</span> times.`;
     }
     else {
-    likeItem.innerHTML = `${likedValue} has been liked <span>1</span> times.`;
+    likeItem.innerHTML = `${likedValue} has been liked <span>1</span> time.`;
     likeList.appendChild(likeItem);
     }
 }
